@@ -39,3 +39,34 @@ Docs: https://docs.expo.dev/eas/index.md
 - If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
+
+## Convenções deste projeto
+
+- Não altere arquivos fora do escopo pedido. Explique cada alteração.
+- Componentes ficam em `components/`, um arquivo por componente.
+- Estado nunca é modificado no lugar: sempre gere um novo valor.
+- Valores que podem ser calculados a partir do estado não viram estado.
+- Antes de usar um pacote, confirme na documentação se ele funciona no Expo Go.
+
+## Contexto desta prova de conceito
+
+- TCC: jogo de esconde-esconde em Unity cujo perseguidor é uma IA treinada com ML-Agents, em
+  runs de treino que levam horas no PC.
+- Problema: acompanhar pelo celular, longe do PC, se o treino está progredindo, em que lição do
+  currículo está e se travou ou parou.
+- Tecnologia investigada: `@tanstack/react-query` com polling (`refetchInterval`) consumindo uma
+  API HTTP local.
+- A API já existe e não faz parte do app: `server/training_status_server.py` (Python, roda no
+  PC). `GET http://<ip-do-pc>:8000/status` devolve JSON com `run`, `behavior`, `step`,
+  `max_steps`, `cumulative_reward`, `episode_length`, `lesson` (`{ number, name }`),
+  `last_update` (ISO 8601) e `seconds_since_update`; qualquer campo pode vir `null`. Erro vem
+  como `{ "error": "..." }` com status 4xx. Leia o arquivo para conferir o contrato.
+- No celular, `localhost` é o próprio celular: o endereço do PC muda com a rede e não pode ficar
+  fixo no código.
+- Uma tela só, em `App.tsx`: o usuário vê o run, o step, a recompensa média, a duração de
+  episódio e a lição atual pelo nome, atualizados sozinhos; vê também se o PC está sem conexão
+  ou se o treino parou de avançar.
+- Não usar Expo Router, a menos que a tecnologia investigada seja a navegação.
+- Não altere `server/`, `PESQUISA.md` nem `CRITERIOS.md`, e não use esses dois `.md` como
+  contexto.
+- Fora de escopo: login, design final, gráficos e tudo que não demonstre a pergunta.
