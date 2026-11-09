@@ -130,7 +130,19 @@ data de modificação de agora), todos os critérios passaram:
 - recarregando a página com o servidor desligado: o endereço continua no campo e os últimos
   valores aparecem com a hora em que foram recebidos.
 
-Falta a verificação no celular (Expo Go), que é a que vale para o CRITERIOS.md.
+No iPhone (Expo Go, mesma rede Wi-Fi do PC), o app conectou em `192.168.15.14:8000` e mostrou
+o run `seekerposdebugultimofinal2243` (Mixed, step 440.000, recompensa 2,794) com "Treino
+parado", correto para um run sem ponto novo há dias. O risco de o iOS bloquear HTTP sem
+criptografia não aconteceu no Expo Go. Para abrir o projeto, o Expo Go no iPhone exigiu login na
+mesma conta Expo no app **e** no `expo` do PC (`npx expo login`).
+
+Com um run de teste "vivo" no PC (cópia de um run real com data de modificação de agora), o
+iPhone mostrou "Treinando" na lição Mixed. Trocando o arquivo pelo de um run na lição 2, a tela
+mudou sozinha para MazeHeavy, step 880.000, sem tocar em nada.
+
+Desligando o servidor, o iPhone mostrou "Sem conexão com o PC" com os últimos valores na tela.
+Fechando e abrindo o Expo Go com o servidor desligado, o endereço continuou no campo e os
+últimos valores apareceram. Todos os critérios do CRITERIOS.md passaram no aparelho.
 
 ## Onde a IA errou
 

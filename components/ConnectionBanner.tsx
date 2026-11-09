@@ -7,6 +7,13 @@ export type Connection =
   | { kind: 'stalled'; minutes: number }
   | { kind: 'training' };
 
+function formatAge(minutes: number) {
+  if (minutes < 60) return `${minutes} min`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 48) return `${hours} h`;
+  return `${Math.floor(hours / 24)} dias`;
+}
+
 function describe(connection: Connection) {
   switch (connection.kind) {
     case 'no-address':
@@ -16,7 +23,7 @@ function describe(connection: Connection) {
     case 'offline':
       return { color: '#b91c1c', text: connection.message };
     case 'stalled':
-      return { color: '#b45309', text: `Treino parado há ${connection.minutes} min` };
+      return { color: '#b45309', text: `Treino parado há ${formatAge(connection.minutes)}` };
     case 'training':
       return { color: '#15803d', text: 'Treinando' };
   }
