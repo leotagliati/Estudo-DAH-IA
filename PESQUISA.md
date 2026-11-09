@@ -176,6 +176,11 @@ Fechando e abrindo o Expo Go com o servidor desligado, o endereço continuou no 
 
 ## Resultado e próximos passos no TCC
 
+Vídeo da demonstração: [docs/demo-treino-ao-vivo.mp4](docs/demo-treino-ao-vivo.mp4). À esquerda, o
+Unity; à direita, o app no iPhone. O app começa em "Treino parado" num run antigo, e depois do
+Play no Unity muda sozinho para "Treinando" e mostra o primeiro ponto do run novo (20.000 steps).
+
+
 - A PoC responde à pergunta: com `refetchInterval` e o `error` do react-query, o celular
   acompanha o run, distingue "PC fora do ar" de "treino parado" e não perde a última leitura.
   Faltou pouco código à mão, e o ponto difícil não estava no app: estava em achar uma fonte de
